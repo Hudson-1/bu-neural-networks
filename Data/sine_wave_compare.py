@@ -10,7 +10,7 @@ y3 = 30 * (np.sin(2*x + 3)) + np.random.normal(0, 1, size=10000) * 0.7
 
 #save data
 df = pd.DataFrame({"t": x, "x": y1, "y": y2, "z": y3}) 
-df.to_csv("sine_wave_compare.csv", index=False) 
+df.to_csv("Data\sine_wave_compare.csv", index=False) 
 
 #graph
 plt.style.use('dark_background')
