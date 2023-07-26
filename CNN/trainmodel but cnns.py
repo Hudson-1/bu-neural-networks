@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import torch.nn.functional as F
-
+import torch.nn.init as init
 
 torch.set_default_dtype(torch.float64)
 
@@ -71,31 +71,47 @@ class Net(nn.Module):
     
 net = Net()
 
+def init_weights(m):
+    if type(m) == nn.Linear:
+        init.xavier_uniform_(m.weight)
+        m.bias.data.fill_(0.01)
+    elif type(m) == nn.Conv1d:
+        init.xavier_uniform_(m.weight)
+        if m.bias is not None:
+            m.bias.data.fill_(0.01)
 
-optimizer = optim.SGD(net.parameters(), lr=1e-3, momentum= 0.9)
+net.apply(init_weights)
+
+optimizer = optim.Adam(net.parameters(), lr=1e-3)#, momentum= 0.9)
 # optimizer = optim.Adam(net.parameters(), lr=1e-3)
 criterion = nn.MSELoss()
 
 loss_list = [] 
 
 net = Net()
+net.train()
 
 loss_list = [] 
 # print("net",list(net.parameters()))
 for epoch in range(2000):
     running_loss = 0.0
     for i in range(np_data.shape[0]//batch_size):
-        with torch.enable_grad():
-            optimizer.zero_grad()
-            inputs = np_data[i:i+batch_size]
-            labels = np_dep_data[i:i+batch_size]
-            outputs = net(inputs)
-            # print(outputs[0], labels[0])
-           
-            loss = criterion(outputs, labels)
-            loss.backward() # compute gradients
-            optimizer.step() # update parameters
-            running_loss += loss.item()
+
+        optimizer.zero_grad()
+        inputs = np_data[i:i+batch_size]
+        labels = np_dep_data[i:i+batch_size]
+        # print(inputs, labels) 
+        outputs = net(inputs)
+        # print(inputs[0], labels[0]) 
+        
+        loss = criterion(outputs, labels)
+        loss.backward() # compute gradients
+
+        # for name, param in net.named_parameters():
+        #     print(name, param.grad)
+
+        optimizer.step() # update parameters
+        running_loss += loss.item()
             
         
     print(f"[{epoch + 1} loss: {running_loss:.3f}")
