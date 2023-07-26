@@ -74,16 +74,8 @@ class Net(nn.Module):
     
 net = Net()
 
-def init_weights(m):
-    if type(m) == nn.Linear:
-        init.xavier_uniform_(m.weight)
-        m.bias.data.fill_(0.01)
-    elif type(m) == nn.Conv1d:
-        init.xavier_uniform_(m.weight)
-        if m.bias is not None:
-            m.bias.data.fill_(0.01)
+net.load_state_dict(torch.load("CNN\CNN_Data\sine_wave_model_cnn.pth"))
 
-net.apply(init_weights)
 
 optimizer = optim.Adam(net.parameters(), lr=1e-5)#, momentum= 0.9)
 # optimizer = optim.Adam(net.parameters(), lr=1e-3)
