@@ -1,3 +1,4 @@
+import debugpy
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -16,10 +17,12 @@ np_data = (df.to_numpy())
 np_data = torch.from_numpy(np_data)
 # print(np_data.size())
 np_data = torch.reshape(np_data, (-1, 30, 3)).transpose(2,1)
-# print(np_data.size())
-print("np")
-print(np_data)
-
+print(np_data.size())
+# print("np")
+# print(np_data)
+# ### artificial data ####
+# ind = torch.rand(10000, 3, 30)
+# dep = torch.rand(1000, 3)
 
 df = pd.read_csv('CNN\CNN_Data\dep_data_cnn.csv')
 np_dep_data = (df.to_numpy())
@@ -82,13 +85,13 @@ def init_weights(m):
 
 net.apply(init_weights)
 
-optimizer = optim.Adam(net.parameters(), lr=1e-3)#, momentum= 0.9)
+optimizer = optim.Adam(net.parameters(), lr=1e-3, momentum= 0.9)
 # optimizer = optim.Adam(net.parameters(), lr=1e-3)
 criterion = nn.MSELoss()
 
 loss_list = [] 
 
-net = Net()
+# net = Net()
 net.train()
 
 loss_list = [] 
@@ -99,7 +102,9 @@ for epoch in range(2000):
 
         optimizer.zero_grad()
         inputs = np_data[i:i+batch_size]
+        # inputs = ind[i:i+batch_size]
         labels = np_dep_data[i:i+batch_size]
+        # labels = dep[i:i+batch_size]
         # print(inputs, labels) 
         outputs = net(inputs)
         # print(inputs[0], labels[0]) 
