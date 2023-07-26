@@ -10,7 +10,7 @@ import torch.nn.init as init
 
 torch.set_default_dtype(torch.float64)
 
-batch_size = 50
+batch_size = 75
 
 df = pd.read_csv('CNN\CNN_Data\ind_data_cnn.csv')
 np_data = (df.to_numpy())
@@ -45,7 +45,7 @@ class Net(nn.Module):
         # self.conv4 = nn.Conv1d(in_channels=128, out_channels=256, kernel_size=1, padding=0, dilation=1)
         # self.conv5 = nn.Conv1d(in_channels=256, out_channels=512, kernel_size=1, padding=0, dilation=1)
         self.pool = torch.nn.MaxPool1d(1,stride=1)
-        self.fc1 = nn.Linear(32 * 30, 480)
+        self.fc1 = nn.Linear(32 * 30, 3)
         self.fc2 = nn.Linear(480, 3)
         self.relu = nn.ReLU()
         
@@ -65,8 +65,8 @@ class Net(nn.Module):
         x = self.pool(x)
         x = torch.nn.Flatten()(x)
         x = self.fc1(x)
-        x=  self.relu(x)
-        x = self.fc2(x)
+        # x=  self.relu(x)
+        # x = self.fc2(x)
         # print("output")
         # print(x)
         return x
@@ -85,7 +85,7 @@ def init_weights(m):
 
 net.apply(init_weights)
 
-optimizer = optim.Adam(net.parameters(), lr=1e-3, momentum= 0.9)
+optimizer = optim.Adam(net.parameters(), lr=1e-5)#, momentum= 0.9)
 # optimizer = optim.Adam(net.parameters(), lr=1e-3)
 criterion = nn.MSELoss()
 
@@ -157,5 +157,5 @@ ax3.legend()
 
 plt.show() 
     
-#torch.save(net.state_dict(), "sine_wave_model.pth")
+torch.save(net.state_dict(), "CNN\CNN_Data\sine_wave_model_cnn.pth")
 print("Finished Training")
