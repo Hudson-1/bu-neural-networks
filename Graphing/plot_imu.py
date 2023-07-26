@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('imu_data.csv')
+df = pd.read_csv('Data\imu_data.csv')
 np_data = (df.to_numpy()).T
 # print(np_data[0].shape)
 t = np_data[0]

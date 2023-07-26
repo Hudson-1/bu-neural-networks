@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt # import the library
 
 torch.set_default_dtype(torch.float64)
 
-df = pd.read_csv('ind_data.csv')
+df = pd.read_csv('Data\ind_data.csv')
 np_data = (df.to_numpy())
 np_data = torch.from_numpy(np_data)
 
-df = pd.read_csv('dep_data.csv')
+df = pd.read_csv('Data\dep_data.csv')
 np_dep_data = (df.to_numpy())
 np_dep_data = torch.from_numpy(np_dep_data)
 
@@ -89,5 +89,5 @@ ax3.legend()
 
 plt.show() 
     
-torch.save(net.state_dict(), "sine_wave_model.pth")
+torch.save(net.state_dict(), "Data\sine_wave_model.pth")
 print("Finished Training")

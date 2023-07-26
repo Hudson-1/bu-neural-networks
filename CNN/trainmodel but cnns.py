@@ -11,7 +11,7 @@ torch.set_default_dtype(torch.float64)
 
 batch_size = 50
 
-df = pd.read_csv('ind_data_cnn.csv')
+df = pd.read_csv('CNN\CNN_Data\ind_data_cnn.csv')
 np_data = (df.to_numpy())
 np_data = torch.from_numpy(np_data)
 # print(np_data.size())
@@ -21,7 +21,7 @@ print("np")
 print(np_data)
 
 
-df = pd.read_csv('dep_data_cnn.csv')
+df = pd.read_csv('CNN\CNN_Data\dep_data_cnn.csv')
 np_dep_data = (df.to_numpy())
 np_dep_data = torch.from_numpy(np_dep_data)
 # print(np_dep_data.size())

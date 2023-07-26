@@ -42,7 +42,7 @@ def update_imu():
 
 def save_data():
     df = pd.DataFrame({"t" : np.asarray(t), "x": np.asarray(data_x), "y": np.asarray(data_y), "z": np.asarray(data_z)})
-    df.to_csv("imu_data.csv", index=False)
+    df.to_csv("Data\imu_data.csv", index=False)
 
 
 while True:

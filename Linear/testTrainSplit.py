@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('sine_wave.csv')
+df = pd.read_csv('Data\sine_wave.csv')
 np_data = (df.to_numpy())[:,1:]
 n_data = np_data.shape[0]
 win_len = 5
@@ -29,10 +29,10 @@ for i in range(1, 5):
 dep_cols = ['x5', 'y5', 'z5']
 
 # Save IND_DATA as a csv file named ind_data.csv with shape (9995, 4, 3) and column names
-pd.DataFrame(IND_DATA.reshape(9995, -1)).to_csv('ind_data.csv', index=False, header=ind_cols)
+pd.DataFrame(IND_DATA.reshape(9995, -1)).to_csv('Data\ind_data.csv', index=False, header=ind_cols)
 
 # Save DEP_DATA as a csv file named dep_data.csv with shape (9995, 3) and column names
-pd.DataFrame(DEP_DATA).to_csv('dep_data.csv', index=False, header=dep_cols)
+pd.DataFrame(DEP_DATA).to_csv('Data\dep_data.csv', index=False, header=dep_cols)
 
 ################################
 ### output data

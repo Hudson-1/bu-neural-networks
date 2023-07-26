@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt # import the library
 torch.set_default_dtype(torch.float64)
 
 
-df = pd.read_csv('ind_data_compare.csv')
+df = pd.read_csv('Data\ind_data_compare.csv')
 np_data = (df.to_numpy())
 np_data = torch.from_numpy(np_data)
 
-df = pd.read_csv('dep_data_compare.csv')
+df = pd.read_csv('Data\dep_data_compare.csv')
 np_dep_data = (df.to_numpy())
 np_dep_data = torch.from_numpy(np_dep_data)
 
@@ -30,7 +30,7 @@ class Net(nn.Module):
         return x
 
 net = Net()
-net.load_state_dict(torch.load("sine_wave_model.pth"))
+net.load_state_dict(torch.load("Data\sine_wave_model.pth"))
 
 predicted_points = net(np_data).detach().numpy()
 actual_points = np_dep_data.numpy()

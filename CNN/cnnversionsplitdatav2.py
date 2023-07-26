@@ -4,7 +4,7 @@ import numpy as np
 import torch
 
 # Read the csv file
-df = pd.read_csv('sine_wave.csv')
+df = pd.read_csv('Data\sine_wave.csv')
 
 # Convert to numpy array and drop the first column (t)
 np_data = (df.to_numpy())[:,1:]
@@ -49,10 +49,10 @@ for i in range(1, 31):
 dep_cols = ['x31', 'y31', 'z31']
 
 # Save IND_DATA as a csv file named ind_data_compare.csv with shape (9969, 30, 3) and column names
-pd.DataFrame(IND_DATA.reshape(9969, -1)).to_csv('ind_data_cnn.csv', index=False, header=ind_cols)
+pd.DataFrame(IND_DATA.reshape(9969, -1)).to_csv('CNN\CNN_Data\ind_data_cnn.csv', index=False, header=ind_cols)
 
 # Save DEP_DATA as a csv file named dep_data_compare.csv with shape (9969, 3) and column names
-pd.DataFrame(DEP_DATA).to_csv('dep_data_cnn.csv', index=False, header=dep_cols)
+pd.DataFrame(DEP_DATA).to_csv('CNN\CNN_Data\dep_data_cnn.csv', index=False, header=dep_cols)
 
 df = pd.load_csv('ind_data_compare.csv')
 print(df.head())
