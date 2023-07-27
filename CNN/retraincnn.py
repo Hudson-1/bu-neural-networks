@@ -12,7 +12,7 @@ torch.set_default_dtype(torch.float64)
 
 batch_size = 150
 
-df = pd.read_csv('CNN\CNN_Data\ind_data_cnn.csv')
+df = pd.read_csv('CNN/CNN_Data/ind_data_cnn.csv')
 np_data = (df.to_numpy())
 np_data = torch.from_numpy(np_data)
 # print(np_data.size())
@@ -24,7 +24,7 @@ print(np_data.size())
 # ind = torch.rand(10000, 3, 30)
 # dep = torch.rand(1000, 3)
 
-df = pd.read_csv('CNN\CNN_Data\dep_data_cnn.csv')
+df = pd.read_csv('CNN/CNN_Data/dep_data_cnn.csv')
 np_dep_data = (df.to_numpy())
 np_dep_data = torch.from_numpy(np_dep_data)
 # print(np_dep_data.size())
@@ -74,10 +74,10 @@ class Net(nn.Module):
     
 net = Net()
 
-net.load_state_dict(torch.load("CNN\CNN_Data\sine_wave_model_cnn.pth"))
+net.load_state_dict(torch.load("CNN/CNN_Data/sine_wave_model_cnn.pth"))
 
 
-optimizer = optim.Adam(net.parameters(), lr=1e-5)#, momentum= 0.9)
+optimizer = optim.Adam(net.parameters(), lr=1e-3)#, momentum= 0.9)
 # optimizer = optim.Adam(net.parameters(), lr=1e-3)
 criterion = nn.MSELoss()
 
@@ -88,7 +88,7 @@ net.train()
 
 loss_list = [] 
 # print("net",list(net.parameters()))
-for epoch in range(3000):
+for epoch in range(10000):
     running_loss = 0.0
     for i in range(np_data.shape[0]//batch_size):
 
@@ -149,5 +149,5 @@ ax3.legend()
 
 plt.show() 
     
-torch.save(net.state_dict(), "CNN\CNN_Data\sine_wave_model_cnn.pth")
+torch.save(net.state_dict(), "CNN/CNN_Data/sine_wave_model_cnn.pth")
 print("Finished Training")
