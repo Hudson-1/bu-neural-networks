@@ -16,7 +16,7 @@ ros::Publisher pub("imu_topic",&qmsg);//a publisher.
 /*** The setup() function is used to initialize the arduino board
 like pin state and variable assignment ***/
 
-void setup()
+void setup()  
 {  
   
   nh.getHardware()->setBaud(9600);
