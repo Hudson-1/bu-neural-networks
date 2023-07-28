@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 
 # Read the imu data and skip the first row
-df_imu = pd.read_csv("~/Downloads/imu_rosbagimu_topic.csv")
+df_imu = pd.read_csv("~/Downloads/imu_2.csv")
 
 # Read the mocap data and skip the first row
-df_mocap = pd.read_csv("~/Downloads/imu_rosbagmocap_topic.csv")
+df_mocap = pd.read_csv("~/Downloads/mocap_2.csv")
 
 # Convert timestamps to datetime objects for both DataFrames
 df_imu['time'] = pd.to_datetime(df_imu['time'])

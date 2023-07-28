@@ -148,6 +148,7 @@ ax3.set_title("Predicted vs Actual points")
 ax3.legend()
 
 plt.show() 
-    
+
+#! Resaves the model
 torch.save(net.state_dict(), "CNN/CNN_Data/sine_wave_model_cnn.pth")
 print("Finished Training")

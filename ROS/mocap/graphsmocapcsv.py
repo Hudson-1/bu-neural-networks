@@ -22,7 +22,7 @@ def quaternion_to_euler_angle_vectorized2(w, x, y, z):
     return X, Y, Z
 
 # Read the CSV file and skip the first row
-df = pd.read_csv("~/Downloads/imu_rosbagmocap_topic.csv") 
+df = pd.read_csv("~/Downloads/mocap_2.csv") 
 
 # Create empty lists to store the Euler angles
 pitch = []
