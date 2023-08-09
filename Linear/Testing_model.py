@@ -38,7 +38,7 @@ actual_points = np_dep_data.numpy()
 mae = torch.mean(torch.square(torch.from_numpy(predicted_points) - torch.from_numpy(actual_points)))
 print(f"Mean square error: {mae:.3f}")
 
-plt.style.use('dark_background')
+# plt.style.use('dark_background')
 fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
 
 ax1.plot(actual_points[:,0], c="blue", linestyle="-", label="Actual") 

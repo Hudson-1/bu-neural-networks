@@ -42,7 +42,7 @@ diff_z = np.abs(np.array(quat_imu_z) - np.array(quat_mocap_z))
 diff_w = np.abs(np.array(quat_imu_w) - np.array(quat_mocap_w))
 
 # Create separate plots for each Quaternion component for imu
-plt.style.use('dark_background')
+# plt.style.use('dark_background')
 plt.figure(figsize=(10, 8))
 plt.subplot(4, 1, 1)
 plt.plot(quat_imu_x, label='IMU Quaternion X')
@@ -80,12 +80,12 @@ plt.tight_layout()
 plt.show()
 
 # Plot the absolute difference between IMU and Mocap quaternions for each component
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(15, 3))
 plt.plot(diff_x, label='Quaternion X Difference')
 plt.plot(diff_y, label='Quaternion Y Difference')
 plt.plot(diff_z, label='Quaternion Z Difference')
 plt.plot(diff_w, label='Quaternion W Difference')
-plt.xlabel('Index')
+plt.xlabel('Time')
 plt.ylabel('Component Difference')
 plt.legend()
 plt.title('Absolute Difference between IMU and Mocap Quaternion Components')

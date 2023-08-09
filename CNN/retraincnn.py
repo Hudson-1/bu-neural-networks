@@ -77,7 +77,7 @@ net = Net()
 net.load_state_dict(torch.load("CNN/CNN_Data/sine_wave_model_cnn.pth"))
 
 
-optimizer = optim.Adam(net.parameters(), lr=1e-3)#, momentum= 0.9)
+optimizer = optim.Adam(net.parameters(), lr=1e-5)#, momentum= 0.9)
 # optimizer = optim.Adam(net.parameters(), lr=1e-3)
 criterion = nn.MSELoss()
 
@@ -88,7 +88,7 @@ net.train()
 
 loss_list = [] 
 # print("net",list(net.parameters()))
-for epoch in range(10000):
+for epoch in range(10):
     running_loss = 0.0
     for i in range(np_data.shape[0]//batch_size):
 
@@ -115,7 +115,7 @@ for epoch in range(10000):
     loss_list.append(running_loss) 
 
 
-plt.style.use('dark_background')
+# plt.style.use('dark_background')
 plt.plot(loss_list) 
 plt.xlabel("Epoch") 
 plt.ylabel("Loss") 
@@ -125,7 +125,7 @@ plt.show()
 predicted_points = net(np_data).detach().numpy()
 actual_points = np_dep_data.numpy()
 
-plt.style.use('dark_background')
+# plt.style.use('dark_background')
 fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
 
 ax1.plot(actual_points[:,0], c="blue", linestyle="-", label="Actual") 

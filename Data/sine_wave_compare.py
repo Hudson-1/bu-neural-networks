@@ -13,7 +13,7 @@ df = pd.DataFrame({"t": x, "x": y1, "y": y2, "z": y3})
 df.to_csv("Data\sine_wave_compare.csv", index=False) 
 
 #graph
-plt.style.use('dark_background')
+# plt.style.use('dark_background')
 fig, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex=True)
 ax1.plot(x, y1)
 ax1.set_ylabel("x")
